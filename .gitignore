@@ -1,0 +1,32 @@
+# Dependencies and package manager
+node_modules/
+.pnpm-store/
+
+# Build and test artifacts
+.next/
+.turbo/
+coverage/
+dist/
+*.tsbuildinfo
+next-env.d.ts
+playwright-report/
+test-results/
+
+# Environment files: only the documented example is versioned
+.env
+.env.*
+!.env.example
+
+# Logs and local tooling
+*.log
+.DS_Store
+.idea/
+.vscode/
+
+# Hosting and observability
+.vercel/
+.sentryclirc
+
+# Supabase local state
+supabase/.branches/
+supabase/.temp/

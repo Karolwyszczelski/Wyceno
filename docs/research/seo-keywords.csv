@@ -1,0 +1,19 @@
+keyword,intent,cluster,target_url,country,language,monthly_volume,trend,cpc,keyword_difficulty,data_source,export_date,notes
+kalkulator wyceny,commercial,category,/funkcje/kalkulator-wyceny,PL,pl,,,,,,,requires_export
+kalkulator wyceny na stronę,commercial,embed,/funkcje/widget-na-strone,PL,pl,,,,,,,requires_export
+formularz wyceny,commercial,category,/produkt,PL,pl,,,,,,,requires_export
+formularz zapytania ofertowego,informational,forms,/baza-wiedzy,PL,pl,,,,,,,requires_export
+kalkulator WordPress,commercial,wordpress,/wordpress,PL,pl,,,,,,,requires_export
+konfigurator ceny,commercial,category,/funkcje/kalkulator-wyceny,PL,pl,,,,,,,requires_export
+interaktywny formularz,commercial,forms,/funkcje/formularz-wieloetapowy,PL,pl,,,,,,,requires_export
+formularz wieloetapowy,commercial,forms,/funkcje/formularz-wieloetapowy,PL,pl,,,,,,,requires_export
+formularz kwalifikacji klienta,commercial,qualification,/funkcje/kwalifikacja-leadow,PL,pl,,,,,,,requires_export
+generator wyceny,commercial,category,/produkt,PL,pl,,,,,,,requires_export
+automatyczna wycena,commercial,category,/funkcje/kalkulator-wyceny,PL,pl,,,,,,,requires_export
+kalkulator kosztów,commercial,category,/funkcje/kalkulator-wyceny,PL,pl,,,,,,,requires_export
+kalkulator ceny strony internetowej,transactional,industry,/branze/strony-internetowe,PL,pl,,,,,,,requires_export
+kalkulator mebli na wymiar,transactional,industry,/branze/meble-na-wymiar,PL,pl,,,,,,,requires_export
+kalkulator ogrodzenia,transactional,industry,/branze/ogrodzenia,PL,pl,,,,,,,requires_export
+formularz wyceny remontu,transactional,industry,/branze/remonty,PL,pl,,,,,,,requires_export
+kalkulator usług,commercial,category,/produkt,PL,pl,,,,,,,requires_export
+wtyczka kalkulatora WordPress,commercial,wordpress,/wordpress,PL,pl,,,,,,,requires_export

@@ -61,4 +61,5 @@ docs                     dokumentacja źródłowa
 ## Zasady
 
 Nie instaluj zależności ani nie implementuj funkcji poza aktywnym etapem. Sekrety trafiają wyłącznie do lokalnego `.env.local`; kontrakt znajduje się w `.env.example` i `@wyceno/config`.
+
 # Wyceno
