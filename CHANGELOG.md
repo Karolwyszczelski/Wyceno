@@ -16,6 +16,7 @@ Wszystkie istotne zmiany projektu będą dokumentowane w tym pliku.
   potrafi wymusić własny standalone zamiast używać przypadkowego `next dev`;
   pełny panel przechodzi 15/15 bez pozostawiania kont E2E, a ogólny zestaw
   Playwright 34/34. Snapshoty hero zaktualizowano po side-by-side review.
+  Clean worktree przechodzi frozen install oraz pełny core gate bez cache.
   Aktywny, równoległy render promo pozostawiono poza baseline'em.
 - Dodano kanoniczny program domknięcia produktu i gotowości produkcyjnej.
   Rozdziela on lokalną demonstrację, staging, pilot z prawdziwymi danymi,

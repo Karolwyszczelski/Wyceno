@@ -1569,7 +1569,7 @@ semantykę i kontrast analityki oraz wymusił standalone zamiast zastanego
       lokalnych danych, sekretów i plików niedozwolonych w repozytorium.
 - [x] Zamknąć lub jawnie zastąpić historyczne, niedokończone statusy 12F/12K
       oraz zaktualizować dokumenty opisujące starszy stan funkcji.
-- [ ] Uruchomić pełny gate z czystego checkoutu na przypiętym Node/pnpm.
+- [~] Uruchomić pełny gate z czystego checkoutu na przypiętym Node/pnpm.
 - [~] Utworzyć logiczne commity, wypchnąć branch i uzyskać zielone CI,
   CodeQL oraz pełnohistoryczny Gitleaks.
 
@@ -1581,10 +1581,14 @@ snapshotów Playwright, raportów ani kanonicznych referencji. Seed visual QA
 działa na Node 24 dzięki przepisywaniu importu `.ts` → `.js`; E2E panelu jest
 serialne dla współdzielonego draftu, ma odporny cleanup stale-tab i może
 wymusić własny standalone przez `PLAYWRIGHT_REUSE_EXISTING_SERVER=false`.
-Pełny panel przechodzi 15/15, ogólny zestaw Playwright 34/34, axe analityki ma
-0 naruszeń, a po przebiegu liczba jednorazowych kont `panel-e2e-*` /
-`baseline-*` wynosi 0. Pierwszy logiczny commit produktu to `e75ff93`.
-Dokumentacja i dowody QA oczekują na drugi commit. Aktualny dependency audit
+Pełny panel przechodzi 15/15 na commicie produktu, ogólny zestaw Playwright
+34/34, axe analityki ma 0 naruszeń, a po przebiegu liczba jednorazowych kont
+`panel-e2e-*` / `baseline-*` wynosi 0. Pierwszy logiczny commit produktu to
+`e75ff93`, a commit dokumentacji i QA to `731e978`. Odłączony clean worktree
+na `731e978` przeszedł frozen install, format, SAST, secret scan, PostgreSQL/RLS,
+WordPress, 32/32 wymuszonych bez cache zadań lint/typecheck/unit/build oraz
+34/34 ogólnych testów Playwright. Do pełnego clean-checkout gate'u pozostaje
+powtórzenie 15/15 panelu z jednorazowym kontem. Aktualny dependency audit
 oczekuje na jawną zgodę właściciela, ponieważ wysyła graf zależności do
 zewnętrznego rejestru. Równoległy, nadal aktywny render
 `artifacts/promo/lorum-launch-v1/` pozostaje nietknięty i poza baseline'em.

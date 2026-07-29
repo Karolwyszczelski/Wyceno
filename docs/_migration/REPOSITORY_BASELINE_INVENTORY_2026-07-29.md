@@ -1,11 +1,13 @@
 # Inventory baseline'u repozytorium — Etap 12ZD
 
 **Data pierwszego snapshotu:** 2026-07-29  
-**Status:** LOCAL GATE PASS, pierwszy commit logiczny zapisany; clean checkout,
-dependency audit i zdalne CI oczekują  
+**Status:** CLEAN CHECKOUT CORE GATE PASS; uwierzytelniony panel, dependency
+audit i zdalne CI oczekują  
 **Branch roboczy:** `codex/repository-baseline-12zd`  
 **Commit bazowy:** `3193262fef6f9e0a003497072abf67852fa1745a`  
 **Commit produktu:** `e75ff93` (`feat: establish complete Lorum product baseline`)  
+**Commit dokumentacji i QA:** `731e978`
+(`docs: preserve visual QA and readiness evidence`)  
 **Zakres:** cały Git-visible working tree, bez odczytu zawartości ignorowanych
 sekretów lokalnych
 
@@ -217,13 +219,13 @@ historyczne wpisy nie konkurują z aktualnym gate'em.
 
 ## 6. Blokery immutable baseline'u
 
-1. dokumentacja i dowody QA oczekują na drugi logiczny commit;
-2. pełny gate nie został jeszcze powtórzony z czystego checkoutu;
-3. aktualny dependency audit oczekuje na jawną zgodę właściciela, ponieważ
+1. uwierzytelniony panel 15/15 przeszedł na commicie produktu, ale nie został
+   ponownie uruchomiony z tymczasowym kontem w odłączonym clean worktree;
+2. aktualny dependency audit oczekuje na jawną zgodę właściciela, ponieważ
    wysyła graf zależności do zewnętrznego rejestru;
-4. brak zielonego CI, CodeQL i pełnohistorycznego Gitleaks na jednym SHA;
-5. brak zatwierdzonego immutable commit SHA;
-6. równoległy, aktywny render promo pozostaje celowo poza baseline'em.
+3. brak zielonego CI, CodeQL i pełnohistorycznego Gitleaks na jednym SHA;
+4. brak zatwierdzonego immutable commit SHA;
+5. równoległy, aktywny render promo pozostaje celowo poza baseline'em.
 
 Lokalny gate działa na przypiętym Node 24.18.0 i pnpm 11.17.0. Pełne 15/15
 scenariuszy panelu przechodzi na wymuszonym standalone, nie na przypadkowym
@@ -234,10 +236,25 @@ uwierzytelnionym panelem daje to 49/49 zweryfikowanych ścieżek. Pięć snapsho
 hero zaktualizowano dopiero po side-by-side review i ponowny przebieg 5/5 oraz
 pełny przebieg bez trybu aktualizacji snapshotów są zielone.
 
+Odłączony worktree na `731e978` przeszedł frozen install przy Node 24.18.0
+i pnpm 11.17.0. Wymuszony przebieg bez cache zakończył 32/32 zadania Turbo:
+lint, typecheck, testy jednostkowe i build. Dodatkowo przeszły `format:check`,
+SAST, secret scan, pełny harness PostgreSQL/RLS, WordPress dla WP 6.9.2 i
+7.0.2 na PHP 8.5.2 oraz 34/34 ogólnych testów Playwright na własnym
+standalone. Lokalne `.env.local` zostało wyłącznie wstrzyknięte do procesu;
+nie skopiowano go do checkoutu. Pierwsza próba bez środowiska prawidłowo
+potwierdziła, że auth nie działa bez wymaganej konfiguracji Supabase.
+
+Test auth zapisuje także artefakty QA. Powtórny render różnił się od
+zaakceptowanego PNG o 28 pikseli (0,0018%) bez widocznej zmiany układu; drugi
+render był bajtowo stabilny. Traktujemy to jako szum rasteryzacji, nie zgodę
+na automatyczną aktualizację dowodów. W odłączonym worktree artefakt zostaje
+przywrócony do wersji commita po zakończeniu weryfikacji.
+
 ## 7. Kolejność dalszych działań
 
-1. zapisać dokumentację i dowody QA jako drugi logiczny commit;
+1. uruchomić 15/15 panelu z jednorazowym kontem w clean worktree;
 2. po zgodzie właściciela uruchomić aktualny dependency audit;
-3. zweryfikować czysty checkout i zdalne CI;
+3. wypchnąć branch i zweryfikować zdalne CI;
 4. osobno przejrzeć zakończony pakiet promo;
 5. wskazać SHA dopiero po przejściu wszystkich gate'ów.
