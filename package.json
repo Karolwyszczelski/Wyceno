@@ -24,8 +24,15 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "turbo run lint",
+    "security:dependencies": "bash scripts/security/dependency-scan.sh",
+    "security:sast": "bash scripts/security/static-scan.sh",
+    "security:secrets": "bash scripts/security/secret-scan.sh",
+    "security:scan": "pnpm security:sast && pnpm security:secrets",
     "start": "turbo run start",
-    "test": "turbo run test",
+    "test": "pnpm test:unit && pnpm test:rls && pnpm test:wordpress",
+    "test:rls": "bash scripts/test-rls.sh",
+    "test:unit": "turbo run test",
+    "test:wordpress": "bash apps/wordpress-plugin/tests/run.sh",
     "typecheck": "turbo run typecheck"
   },
   "devDependencies": {
