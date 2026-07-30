@@ -221,8 +221,8 @@ historyczne wpisy nie konkurują z aktualnym gate'em.
 
 1. uwierzytelniony panel 15/15 przeszedł na commicie produktu, ale nie został
    ponownie uruchomiony z tymczasowym kontem w odłączonym clean worktree;
-2. aktualny dependency audit oczekuje na jawną zgodę właściciela, ponieważ
-   wysyła graf zależności do zewnętrznego rejestru;
+2. dependency audit z 2026-07-31 nie wykrył znanych podatności; wynik wymaga
+   jeszcze powtórzenia przez CI na immutable SHA;
 3. brak zielonego CI, CodeQL i pełnohistorycznego Gitleaks na jednym SHA;
 4. brak zatwierdzonego immutable commit SHA;
 5. równoległy, aktywny render promo pozostaje celowo poza baseline'em.
@@ -254,7 +254,7 @@ przywrócony do wersji commita po zakończeniu weryfikacji.
 ## 7. Kolejność dalszych działań
 
 1. uruchomić 15/15 panelu z jednorazowym kontem w clean worktree;
-2. po zgodzie właściciela uruchomić aktualny dependency audit;
-3. wypchnąć branch i zweryfikować zdalne CI;
-4. osobno przejrzeć zakończony pakiet promo;
-5. wskazać SHA dopiero po przejściu wszystkich gate'ów.
+2. wypchnąć branch i zweryfikować zdalne CI, dependency audit, CodeQL i
+   pełnohistoryczny Gitleaks;
+3. osobno przejrzeć zakończony pakiet promo;
+4. wskazać SHA dopiero po przejściu wszystkich gate'ów.

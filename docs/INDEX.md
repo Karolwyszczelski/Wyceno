@@ -7,6 +7,11 @@ Ten plik wskazuje jedno aktywne źródło prawdy dla każdego obszaru. Materiał
 referencyjne i raporty historyczne nie zastępują wymagań produktu, decyzji ADR
 ani kontroli bezpieczeństwa.
 
+Program startu sprzedaży ma trzy główne dokumenty wykonawcze:
+`PRODUCTION_READINESS.md`, `SECURITY_AND_DATA.md` i
+`LAUNCH_FIRST_5_CLIENTS.md`. Odsyłają one do szczegółowych kontraktów poniżej,
+zamiast tworzyć ich konkurencyjne kopie.
+
 ## Kolejność pierwszeństwa
 
 1. Bezpieczeństwo, prywatność i tenant isolation:
@@ -32,27 +37,29 @@ zatwierdza funkcji spoza `SCOPE.md`.
 
 ## Mapa źródeł prawdy
 
-| Obszar               | Dokument kanoniczny                                   | Dokumenty uzupełniające                                                                             |
-| -------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Cel i pozycjonowanie | `PRODUCT_VISION.md`                                   | `JOBS_TO_BE_DONE.md`, `PERSONAS.md`, `USER_JOURNEYS.md`                                             |
-| Zakres MVP           | `PRODUCT_REQUIREMENTS.md`, `SCOPE.md`, `NON_GOALS.md` | `ROADMAP.md`                                                                                        |
-| Decyzje              | `DECISIONS.md`                                        | `ASSUMPTIONS_AND_OPEN_QUESTIONS.md`, `RISKS.md`                                                     |
-| Architektura         | `ARCHITECTURE.md`                                     | `DEPENDENCIES.md`, `DEVELOPMENT.md`                                                                 |
-| Dane i tenant scope  | `DATABASE.md`, `AUTHORIZATION.md`                     | `FLOW_DOMAIN.md`, `LEAD_PIPELINE.md`                                                                |
-| Bezpieczeństwo       | `SECURITY.md`, `THREAT_MODEL.md`                      | `SECURITY_AUDIT_2026-07-25.md`, `BACKUP_AND_RECOVERY.md`                                            |
-| Prywatność           | `PRIVACY.md`                                          | `DPA_AND_SUBPROCESSORS.md`, `RELEASE_CHECKLIST.md`                                                  |
-| Widget               | `WIDGET_ARCHITECTURE.md`                              | `WIDGET_IMPLEMENTATION.md`, `WORDPRESS_PLUGIN.md`                                                   |
-| Estymacja            | `ESTIMATION_ENGINE.md`                                | `PRODUCT_REQUIREMENTS.md`, ADR-016                                                                  |
-| Analityka            | `ANALYTICS_PLAN.md`                                   | `ANALYTICS_IMPLEMENTATION.md`, ADR-019                                                              |
-| Marketing i SEO      | `CONTENT_ARCHITECTURE.md`, `SEO_STRATEGY.md`          | `MARKETING_IMPLEMENTATION.md`, `CRO_PLAN.md`                                                        |
-| Treść i stany UX     | `CONTENT_DESIGN.md`, `EMPTY_LOADING_ERROR_STATES.md`  | `ACCEPTANCE_CRITERIA.md`                                                                            |
-| System wizualny      | `DESIGN_SYSTEM.md`                                    | `DESIGN_PRINCIPLES.md`, ADR-024–ADR-028                                                             |
-| Zakres ekranów       | `UI_SCREEN_SPEC.md`                                   | `ui/MASTER_SCREEN_SCOPE.md`, `panel-reference-audit.md`, `BUILDER_COMPLETENESS_AUDIT_2026-07-29.md` |
-| Responsive           | `RESPONSIVE_LAYOUT.md`                                | `ui/RESPONSIVE_LAYOUT_INTEGRITY.md`                                                                 |
-| Visual QA            | `VISUAL_QA.md`                                        | `panel-visual-qa.md`, `QA_PLAN.md`, `ACCESSIBILITY.md`                                              |
-| Obrazy referencyjne  | `ui/REFERENCE_MANIFEST.md`                            | `ui/UI_REFERENCE_INDEX.md`, `ui/REFERENCE_IMAGE_PROTOCOL.md`                                        |
-| Plan prac            | `TASKS.md`                                            | `ROADMAP.md`, `RELEASE_CHECKLIST.md`                                                                |
-| Gotowość produkcyjna | `PRODUCTION_READINESS_PLAN.md`                        | `RELEASE_CHECKLIST.md`, `DEPLOYMENT.md`, `BACKUP_AND_RECOVERY.md`, `OBSERVABILITY.md`               |
+| Obszar                | Dokument kanoniczny                                   | Dokumenty uzupełniające                                                                             |
+| --------------------- | ----------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Cel i pozycjonowanie  | `PRODUCT_VISION.md`                                   | `JOBS_TO_BE_DONE.md`, `PERSONAS.md`, `USER_JOURNEYS.md`                                             |
+| Zakres MVP            | `PRODUCT_REQUIREMENTS.md`, `SCOPE.md`, `NON_GOALS.md` | `ROADMAP.md`                                                                                        |
+| Decyzje               | `DECISIONS.md`                                        | `ASSUMPTIONS_AND_OPEN_QUESTIONS.md`, `RISKS.md`                                                     |
+| Architektura          | `ARCHITECTURE.md`                                     | `DEPENDENCIES.md`, `DEVELOPMENT.md`                                                                 |
+| Dane i tenant scope   | `DATABASE.md`, `AUTHORIZATION.md`                     | `FLOW_DOMAIN.md`, `LEAD_PIPELINE.md`                                                                |
+| Bezpieczeństwo        | `SECURITY.md`, `THREAT_MODEL.md`                      | `SECURITY_AUDIT_2026-07-25.md`, `BACKUP_AND_RECOVERY.md`                                            |
+| Prywatność            | `PRIVACY.md`                                          | `DPA_AND_SUBPROCESSORS.md`, `RELEASE_CHECKLIST.md`                                                  |
+| Widget                | `WIDGET_ARCHITECTURE.md`                              | `WIDGET_IMPLEMENTATION.md`, `WORDPRESS_PLUGIN.md`                                                   |
+| Estymacja             | `ESTIMATION_ENGINE.md`                                | `PRODUCT_REQUIREMENTS.md`, ADR-016                                                                  |
+| Analityka             | `ANALYTICS_PLAN.md`                                   | `ANALYTICS_IMPLEMENTATION.md`, ADR-019                                                              |
+| Marketing i SEO       | `CONTENT_ARCHITECTURE.md`, `SEO_STRATEGY.md`          | `MARKETING_IMPLEMENTATION.md`, `CRO_PLAN.md`                                                        |
+| Treść i stany UX      | `CONTENT_DESIGN.md`, `EMPTY_LOADING_ERROR_STATES.md`  | `ACCEPTANCE_CRITERIA.md`                                                                            |
+| System wizualny       | `DESIGN_SYSTEM.md`                                    | `DESIGN_PRINCIPLES.md`, ADR-024–ADR-028                                                             |
+| Zakres ekranów        | `UI_SCREEN_SPEC.md`                                   | `ui/MASTER_SCREEN_SCOPE.md`, `panel-reference-audit.md`, `BUILDER_COMPLETENESS_AUDIT_2026-07-29.md` |
+| Responsive            | `RESPONSIVE_LAYOUT.md`                                | `ui/RESPONSIVE_LAYOUT_INTEGRITY.md`                                                                 |
+| Visual QA             | `VISUAL_QA.md`                                        | `panel-visual-qa.md`, `QA_PLAN.md`, `ACCESSIBILITY.md`                                              |
+| Obrazy referencyjne   | `ui/REFERENCE_MANIFEST.md`                            | `ui/UI_REFERENCE_INDEX.md`, `ui/REFERENCE_IMAGE_PROTOCOL.md`                                        |
+| Plan prac             | `TASKS.md`                                            | `ROADMAP.md`, `RELEASE_CHECKLIST.md`                                                                |
+| Gotowość produkcyjna  | `PRODUCTION_READINESS.md`                             | `PRODUCTION_READINESS_PLAN.md`, `RELEASE_CHECKLIST.md`, `DEPLOYMENT.md`                             |
+| Bezpieczeństwo startu | `SECURITY_AND_DATA.md`                                | `SECURITY.md`, `DATABASE.md`, `AUTHORIZATION.md`, `BACKUP_AND_RECOVERY.md`                          |
+| Pierwszych 5 klientów | `LAUNCH_FIRST_5_CLIENTS.md`                           | `ROADMAP.md`, `ANALYTICS_PLAN.md`, `CRO_PLAN.md`                                                    |
 
 ## Pakiety źródłowe V6
 

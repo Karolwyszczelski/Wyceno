@@ -9,14 +9,34 @@
 
 ## ADR-002: PostgreSQL/Supabase i RLS
 
-**Status:** accepted, wdrożone w Etapie 3
-**Decyzja:** relacyjny model, Auth/Storage, RLS jako niezależna warstwa tenant isolation.
+**Status:** accepted, wdrożone w Etapie 3; ponownie zatwierdzone w audycie
+produkcyjnym 2026-07-31
+**Decyzja:** pozostajemy przy Supabase PostgreSQL, Auth i prywatnym Storage.
+RLS jest niezależną warstwą tenant isolation. Staging i production używają
+osobnych projektów w regionie UE; nie budujemy własnego Auth, Storage ani
+zarządzanego samodzielnie PostgreSQL przed pierwszymi klientami.
 **Dlaczego:** polityki PostgreSQL chronią dane także wtedy, gdy warstwa aplikacji
 ma błąd scope’u. Test integracyjny uruchamia migrację na świeżej instancji
 PostgreSQL i sprawdza dwa tenanty, role oraz prywatne pliki.
 **Konsekwencje:** polityki RLS i testy stają się częścią każdej domeny; service
 role jest ograniczony do jawnych zadań administracyjnych i nigdy nie obsługuje
 zwykłych odczytów panelu.
+
+Zalety dla pierwszych pięciu klientów to mały koszt operacyjny, jeden
+transakcyjny model danych, gotowe Auth/Storage, europejski region i RLS blisko
+danych. Ryzyka to zależność od API Auth/Storage, format polityk i operacyjne
+limity dostawcy. Ograniczamy lock-in przez wersjonowane migracje SQL, standardowy
+PostgreSQL, adaptery Supabase zamknięte w `apps/web/lib/supabase`, prywatny
+eksport danych, logiczne backupy poza dostawcą i brak logiki biznesowej w
+triggerach zależnych od nieprzenośnych rozszerzeń.
+
+Migrację platformy rozważamy dopiero po potwierdzonym problemie, którego nie
+rozwiązuje korekta RLS/grantów, ograniczenie service role, zmiana planu/regionu
+albo adaptera. Przesłanką może być niespełnialne wymaganie regulacyjne,
+powtarzalne naruszenie zatwierdzonego RPO/RTO, brak wymaganej izolacji lub
+udokumentowany koszt/skala przekraczające możliwości platformy. Migracja wymaga
+osobnego ADR, planu eksportu Auth/DB/Storage, testów tenant isolation i restore
+drill; nie jest domyślną reakcją na błąd konfiguracji.
 
 ## ADR-003: Niezmienne wersje opublikowane
 

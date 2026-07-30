@@ -38,7 +38,30 @@ export const serverEnvSchema = z
   })
   .strict();
 
+export const deploymentEnvSchema = z
+  .object({
+    APP_URL: z.url(),
+    DEPLOYMENT_ENV: z.enum(["local", "preview", "staging", "production"]),
+  })
+  .strict()
+  .superRefine((env, context) => {
+    if (env.DEPLOYMENT_ENV !== "production") return;
+    const appUrl = new URL(env.APP_URL);
+    const isLoopback =
+      appUrl.hostname === "localhost" ||
+      appUrl.hostname === "127.0.0.1" ||
+      appUrl.hostname === "[::1]";
+    if (appUrl.protocol !== "https:" || isLoopback) {
+      context.addIssue({
+        code: "custom",
+        message: "Production APP_URL must use HTTPS and a non-loopback hostname.",
+        path: ["APP_URL"],
+      });
+    }
+  });
+
 export type ClientEnv = z.infer<typeof clientEnvSchema>;
+export type DeploymentEnv = z.infer<typeof deploymentEnvSchema>;
 export type ServerEnv = z.infer<typeof serverEnvSchema>;
 
 export function parseClientEnv(input: unknown): ClientEnv {
@@ -47,4 +70,8 @@ export function parseClientEnv(input: unknown): ClientEnv {
 
 export function parseServerEnv(input: unknown): ServerEnv {
   return serverEnvSchema.parse(input);
+}
+
+export function parseDeploymentEnv(input: unknown): DeploymentEnv {
+  return deploymentEnvSchema.parse(input);
 }

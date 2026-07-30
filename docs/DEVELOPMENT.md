@@ -133,6 +133,10 @@ katalog `.next` nie istnieje.
 
 `pnpm start` uruchamia artefakt standalone wygenerowany przez `next build`.
 Adres można zmienić przez zmienne środowiskowe `HOSTNAME` i `PORT`.
+Lokalny start wczytuje opcjonalny, ignorowany `apps/web/.env.local`; środowiska
+hostowane nadal przekazują konfigurację przez zmienne procesu. Ustaw
+`DEPLOYMENT_ENV=production` na docelowym środowisku — build odrzuci wtedy
+brakujący, nie-HTTPS lub loopbackowy `APP_URL`.
 Build kopiuje statyczne zasoby do artefaktu standalone przez
 `apps/web/scripts/prepare-standalone.mjs`. Wcześniej
 `apps/web/scripts/copy-widget.mjs` kopiuje moduły `@wyceno/widget` i arkusz z

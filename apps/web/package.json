@@ -9,7 +9,7 @@
     "dev": "next dev",
     "lint": "eslint . --max-warnings=0",
     "postbuild": "node scripts/prepare-standalone.mjs",
-    "start": "node .next/standalone/apps/web/server.js",
+    "start": "node --env-file-if-exists=.env.local .next/standalone/apps/web/server.js",
     "test": "vitest run",
     "typecheck": "next typegen && tsc --noEmit"
   },

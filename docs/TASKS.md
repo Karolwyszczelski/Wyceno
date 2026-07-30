@@ -1594,6 +1594,27 @@ zewnętrznego rejestru. Równoległy, nadal aktywny render
 `artifacts/promo/lorum-launch-v1/` pozostaje nietknięty i poza baseline'em.
 Immutable SHA, czysty checkout oraz zdalne CI nadal oczekują.
 
+**Status audytu produkcyjnego 2026-07-31:** Etap pozostaje OPEN, ale lokalny
+gate został ponowiony na Node 24.18.0. Frozen/offline install, format, lint,
+typecheck, 147 testów jednostkowych, PostgreSQL/RLS, WordPress, SAST,
+working-tree secret scan, dependency audit bez znanych podatności, build 39
+tras oraz 34/34 dostępnych testów Playwright przechodzą. Naprawiono start
+standalone: opcjonalny, ignorowany `apps/web/.env.local` jest wczytywany bez
+kopiowania do artefaktu, dzięki czemu auth przechodzi także w produkcyjnym
+E2E. CI ma syntetyczne publiczne wartości testowe, a build oznaczony jako
+production odrzuca loopback lub brak HTTPS w `APP_URL`.
+
+Audyt i plan pierwszych pięciu klientów utrzymują trzy dokumenty wykonawcze:
+`PRODUCTION_READINESS.md`, `SECURITY_AND_DATA.md` oraz
+`LAUNCH_FIRST_5_CLIENTS.md`. Decyzja pozostaje NO-GO z powodu otwartych P0:
+braku rozproszonego rate limit/Turnstile, produkcyjnego ClamAV, backup/restore
+i monitoringu oraz zielonego CI/CodeQL/pełnohistorycznego Gitleaks na jednym
+SHA. Piętnaście panelowych E2E wymaga ponowienia z jednorazowym kontem w clean
+checkout. Równoległy `artifacts/promo/lorum-launch-v1/` pozostał nietknięty.
+Odczyt GitHub potwierdził, że remote nadal wskazuje `3193262`, aktualnego
+CodeQL nie ma na zdalnej gałęzi, a ostatnie joby CI kończyły się bez wykonania
+jakiegokolwiek kroku; nie są zaliczane jako dowód gate'u.
+
 - [ ] Wskazać immutable commit SHA i wyniki jako bazę Etapu 12ZE.
 
 **Gate:** `git status` jest czysty, checkout od zera odtwarza build i pełne

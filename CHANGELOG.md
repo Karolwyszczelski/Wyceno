@@ -6,6 +6,15 @@ Wszystkie istotne zmiany projektu będą dokumentowane w tym pliku.
 
 ### Changed
 
+- Audyt gotowości dla pierwszych pięciu klientów dodał trzy wykonawcze źródła:
+  raport `NO-GO`, checklistę bezpieczeństwa/danych oraz plan sprzedaży i
+  onboardingu oferty 599/999 zł. ADR-002 ponownie zatwierdza Supabase z
+  warunkami ograniczania lock-in i migracji. Naprawiono reprodukowalny start
+  standalone z ignorowanym `.env.local`, dodano syntetyczne publiczne env CI
+  oraz blokadę produkcyjnego buildu dla nie-HTTPS/loopbackowego `APP_URL`.
+  Aktualny audit zależności nie wykrył znanych podatności; otwarte P0 dotyczą
+  rate limit/Turnstile, ClamAV, backup/restore, obserwowalności i zdalnego gate’u
+  na immutable SHA.
 - Etap 12ZD porządkuje 178,48 MiB niezapisanej historii do audytowalnego
   baseline'u. Stare archiwum kodu, odtwarzalny legacy output oraz 101
   dokładnych lub zastąpionych obrazów QA przeniesiono do odzyskiwalnego Kosza;

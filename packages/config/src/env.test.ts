@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { parseClientEnv, parseServerEnv } from "./env";
+import { parseClientEnv, parseDeploymentEnv, parseServerEnv } from "./env";
 
 describe("environment validation", () => {
   it("keeps the browser contract limited to explicitly public values", () => {
@@ -60,5 +60,38 @@ describe("environment validation", () => {
         CLAMAV_HOST: "clamav/internal",
       }),
     ).toThrow();
+  });
+
+  it("rejects localhost and insecure APP_URL for a production deployment", () => {
+    expect(() =>
+      parseDeploymentEnv({
+        APP_URL: "http://localhost:3000",
+        DEPLOYMENT_ENV: "production",
+      }),
+    ).toThrow();
+    expect(() =>
+      parseDeploymentEnv({
+        APP_URL: "http://lorum.example",
+        DEPLOYMENT_ENV: "production",
+      }),
+    ).toThrow();
+    expect(
+      parseDeploymentEnv({
+        APP_URL: "https://app.lorum.example",
+        DEPLOYMENT_ENV: "production",
+      }),
+    ).toEqual({
+      APP_URL: "https://app.lorum.example",
+      DEPLOYMENT_ENV: "production",
+    });
+    expect(
+      parseDeploymentEnv({
+        APP_URL: "http://localhost:3000",
+        DEPLOYMENT_ENV: "local",
+      }),
+    ).toEqual({
+      APP_URL: "http://localhost:3000",
+      DEPLOYMENT_ENV: "local",
+    });
   });
 });

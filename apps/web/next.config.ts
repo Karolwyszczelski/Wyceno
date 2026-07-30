@@ -1,4 +1,12 @@
 import type { NextConfig } from "next";
+import { parseDeploymentEnv } from "@wyceno/config/env";
+
+parseDeploymentEnv({
+  APP_URL: process.env.APP_URL ?? "http://localhost:3000",
+  DEPLOYMENT_ENV:
+    process.env.DEPLOYMENT_ENV ??
+    (process.env.VERCEL_ENV === "production" ? "production" : "local"),
+});
 
 const supabaseOrigin = (() => {
   const configuredUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
