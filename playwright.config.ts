@@ -31,7 +31,8 @@ export default defineConfig({
   ],
   webServer: {
     command: "PORT=3100 HOSTNAME=127.0.0.1 pnpm --filter @wyceno/web start",
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer:
+      !process.env.CI && process.env.PLAYWRIGHT_REUSE_EXISTING_SERVER !== "false",
     timeout: 120_000,
     url: "http://127.0.0.1:3100/health",
   },
